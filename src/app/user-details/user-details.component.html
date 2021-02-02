@@ -1,0 +1,48 @@
+<div class="content">
+    <h1>{{id!='create'?'Update User':'Create User'}}</h1>  
+     
+     <form novalidate [formGroup]="userForm" (ngSubmit)="submit()">
+         <div>
+            <button type="submit" mat-raised-button routerLink="/user">Back</button>
+            <button type="submit" mat-raised-button color='primary' [disabled]="!userForm.valid">Submit</button>
+         </div>
+        <p>
+          <mat-form-field class="half-width">
+            <input matInput formControlName="username" placeholder="Name" type="text" required>
+            <mat-error *ngIf="userForm.get('username').hasError('required') && userForm.get('username').touched && userForm.get('username').invalid">Name is required</mat-error>
+          </mat-form-field>   
+          <mat-form-field class="half-width">
+            <input matInput formControlName="email" placeholder="Email" type="email" required>
+            <mat-error *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched">Email is required</mat-error>
+
+          </mat-form-field>        
+        </p>
+        
+        <p>
+            <mat-form-field class="half-width">
+                <input matInput formControlName="phonenumber" placeholder="Mob Number" type="tel" required>
+                <mat-error *ngIf="userForm.get('phonenumber').hasError('required') && userForm.get('phonenumber').touched">Mob number is required</mat-error>
+
+              </mat-form-field>
+              <mat-select placeholder="Type" formControlName="usertype" class="half-width" required> 
+                <mat-option *ngFor="let utype of userType" [value]="utype">
+                  {{ utype }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="userForm.get('usertype').hasError('required') && userForm.get('usertype').touched">Type is required</mat-error>
+  
+        </p>
+        
+        
+        <p>
+          <mat-form-field class="full-width">
+            <textarea matInput formControlName="address" placeholder="Address" rows=3 required></textarea>
+            <mat-error *ngIf="userForm.get('address').hasError('required') && userForm.get('address').touched">Address is required</mat-error>
+
+          </mat-form-field>
+        </p>
+       
+      </form>
+
+</div>
+

@@ -1,0 +1,38 @@
+
+    <div class="content">
+        
+          <button type="submit" mat-raised-button  color='primary' routerLink="/user/create">Create</button>
+          <div id="table-scroll" class="table-scroll tableList-vScroll">
+            <table id="main-table" class="main-table tablehead">
+              <thead>
+                <tr>
+                  <th class="tablebody_Width-100_WP" title="Name">Name</th>
+                  <th class="tablebody_Width-100_WP" title="Email">Email</th>
+                  <th class="tablebody_Width-100_WP" title="Mobile Number">Mobile Number</th>
+                  <th class="tablebody_Width-100_WP" title="Type">Type</th>
+                  <th class="tablebody_Width-100_WP" title="Address">Address</th>
+                  <th class="tablebody_Width-100_WP" title="Action">Action</th>                  
+                </tr>
+              </thead>
+              <tbody [hidden]="userList.length==0">
+                <tr *ngFor="let user of userList">
+                  <td class="tablebody_Width-100_WP" title="{{ user.username }}">{{ user.username }}</td>
+                  <td class="tablebody_Width-100_WP" title="{{ user.email }}">{{ user.email }}</td>
+                  <td class="tablebody_Width-100_WP" title="{{ user.phonenumber }}">{{ user.phonenumber }}</td>
+                  <td class="tablebody_Width-100_WP" title="{{ user.usertype }}">{{ user.usertype }}</td>
+                  <td class="tablebody_Width-100_WP" title="{{ user.address }}">{{ user.address }}</td>
+                  <td class="tablebody_Width-100_WP">                   
+                    <mat-icon aria-hidden="false" aria-label="edit" class="icons" [routerLink]="['/user/', user._id]">edit</mat-icon>
+                    <mat-icon aria-hidden="false" aria-label="delete" class="icons" (click)="deleteUser(user._id)">delete</mat-icon>
+                    <!-- <a href="#" [routerLink]="['/user/', user._id]" class="btn btn-primary">Edit</a>
+                     <button type="button" (click)="deleteUser(user._id)" class="btn btn-danger">Delete</button> -->
+                   </td>
+                </tr>
+              </tbody>
+            </table>
+            <div [hidden]="userList.length!=0">
+              <div class="noDataAvailable">No records found</div>
+            </div>
+          </div>    
+    </div>
+    
